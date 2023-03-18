@@ -1,0 +1,292 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 698,
+      "max": [
+        0.9809657335281372,
+        1.2927238941192627,
+        0.335868239402771
+      ],
+      "min": [
+        -0.9809657335281372,
+        -1.2927238941192627,
+        -0.335868239402771
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 8376,
+      "componentType": 5126,
+      "count": 698,
+      "max": [
+        0.926991879940033,
+        0.9901729822158813,
+        0.9994686841964722
+      ],
+      "min": [
+        -0.9168331027030945,
+        -0.9900190830230713,
+        -0.9994686841964722
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 698,
+      "max": [
+        0.9686980247497559,
+        0.41728582978248596,
+        0.9978786706924438,
+        1.0
+      ],
+      "min": [
+        -0.8544753193855286,
+        -0.9299938678741455,
+        -0.9984560608863831,
+        1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 698,
+      "max": [
+        1.0000176429748535,
+        0.999187171459198
+      ],
+      "min": [
+        0.0022531708236783743,
+        0.00018286705017089844
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 5584,
+      "componentType": 5126,
+      "count": 698,
+      "max": [
+        1.0000176429748535,
+        0.999187171459198
+      ],
+      "min": [
+        0.0022531708236783743,
+        0.00018286705017089844
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 3792,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "reezzy (https://sketchfab.com/whoisreezzy)",
+      "license": "CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)",
+      "source": "https://sketchfab.com/3d-models/chips-bac5fb96ec4345348ad530b4289c648e",
+      "title": "Chips"
+    },
+    "generator": "Sketchfab-12.66.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 15168,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 11168,
+      "byteOffset": 15168,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 16752,
+      "byteOffset": 26336,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 11168,
+      "byteOffset": 43088,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 54256,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/Chips_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/Chips_normal.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "Chips",
+      "normalTexture": {
+        "index": 1,
+        "scale": 0.2692376678887815
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0.0
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "chips_Chips_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3,
+            "TEXCOORD_1": 4
+          },
+          "indices": 5,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "5de78c1d083447c8b6d1ea0279d37341.fbx"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4
+      ],
+      "matrix": [
+        -99.89792633519934,
+        4.5045043646055145,
+        -0.33727489728613136,
+        0.0,
+        -4.5171137953904195,
+        -99.61908821201999,
+        7.458851965567019,
+        0.0,
+        -5.865105592904943e-06,
+        7.466472963280728,
+        99.72086933780994,
+        0.0,
+        -4.928506374359131,
+        72.7467269897461,
+        -2.5578997135162354,
+        1.0
+      ],
+      "name": "chips"
+    },
+    {
+      "mesh": 0,
+      "name": "chips_Chips_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    }
+  ]
+}
