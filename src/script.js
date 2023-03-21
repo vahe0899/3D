@@ -168,13 +168,13 @@ document.getElementById("chipsa").addEventListener("click", () => {
     scene.children.pop();
   }
   const mtlLoader = new MTLLoader();
-  mtlLoader.load("/model.mtl", (mtl) => {
+  mtlLoader.load("/chip.mtl", (mtl) => {
     mtl.preload();
     for (const material of Object.values(mtl.materials)) {
       material.side = THREE.DoubleSide;
     }
     objectLoader.setMaterials(mtl);
-    objectLoader.load("/model.obj", function (object) {
+    objectLoader.load("/chip.obj", function (object) {
       object.scale.set(0.2, 0.2, 0.2);
       object.rotateY(-0.7);
       scene.add(object);
