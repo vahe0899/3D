@@ -1,0 +1,9 @@
+newmtl PotatoChip
+Ns 9.84916
+Ns 9.84916
+Ns 9.84916
+Ns 9.84916
+Ni 1.000000
+d 1.000000
+map_Kd texture.jpeg
+illum 2

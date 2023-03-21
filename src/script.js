@@ -1,15 +1,16 @@
 import "./styles.css";
 import * as THREE from "three";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { FontLoader } from "three/addons/loaders/FontLoader.js";
 import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
+import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
+import { MTLLoader } from "three/addons/loaders/MTLLoader.js";
 
 /**
  *  БАЗОВЫЕ ЗАГРУЗЧИКИ И СЦЕНА С КАМЕРОЙ
  */
 
 // Loader для 3D объектов
-const gloader = new GLTFLoader();
+const objectLoader = new OBJLoader();
 
 // Loader шрифтов
 const fontLoader = new FontLoader();
@@ -34,6 +35,11 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 const canvas = renderer.domElement;
 document.body.appendChild(canvas);
 
+//asdsadsadsadasd
+const loadingManager = new THREE.LoadingManager();
+const textureLoader = new THREE.TextureLoader(loadingManager);
+const normalTexture = textureLoader.load("/bread.png");
+
 /**
  *  МАТЕРИАЛЫ
  */
@@ -44,16 +50,23 @@ const gray = new THREE.MeshPhongMaterial({
   specular: 0xbcbcbc,
 });
 
+// Хлеб
+const torusMaterial = new THREE.MeshStandardMaterial({
+  normalMap: normalTexture,
+  color: 0xb07f43,
+});
+
 // Золотой материал
 const gold = new THREE.MeshPhongMaterial({
   color: 0xdaa520,
   specular: 0xbcbcbc,
 });
 
-// Красный материал для сферы
+// Материал для сферы
 const sphereMaterial = new THREE.MeshPhongMaterial({
-  color: "pink",
-  specular: 0xbcbcbc,
+  color: 0xc851ae,
+  specular: 0x7d7d7d,
+  shininess: 100,
   flatShading: true,
 });
 
@@ -84,20 +97,23 @@ sceneRender();
 
 // ШРИФТЫ
 
-document.getElementById("text").addEventListener("input", (event) => {
-  fontLoader.load("/helvetiker_regular.typeface.json", function (font) {
+document.getElementById("3dtxt").addEventListener("click", (event) => {
+  fontLoader.load("/Roboto_Regular.json", function (font) {
     // Text
-    const textGeometry = new TextGeometry(`${event.target.value}`, {
-      font: font,
-      size: 3,
-      height: 0.2,
-      curveSegments: 12,
-      bevelEnabled: true,
-      bevelThickness: 0.03,
-      bevelSize: 0.02,
-      bevelOffset: 0,
-      bevelSegments: 5,
-    });
+    const textGeometry = new TextGeometry(
+      `${document.getElementById("text").value}`,
+      {
+        font: font,
+        size: 5,
+        height: 1,
+        curveSegments: 12,
+        bevelEnabled: true,
+        bevelThickness: 0.2,
+        bevelSize: 0.1,
+        bevelOffset: 0.1,
+        bevelSegments: 5,
+      }
+    );
     const text = new THREE.Mesh(textGeometry, gold);
     for (; scene.children.length > 2; ) {
       scene.children.pop();
@@ -113,21 +129,21 @@ const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
 // Создание бублика
 const torusGeometry = new THREE.TorusGeometry(10, 3, 16, 100);
-const torus = new THREE.Mesh(torusGeometry, gold);
+const torus = new THREE.Mesh(torusGeometry, torusMaterial);
 
 //Рендер сферы
 function sphereRender() {
   requestAnimationFrame(sphereRender);
-  sphere.rotation.x += 0.01;
-  sphere.rotation.y += 0.01;
+  sphere.rotation.x += 0.005;
+  sphere.rotation.y += 0.005;
   renderer.render(scene, camera);
 }
 
 //Рендер бублика
 function torusRender() {
   requestAnimationFrame(torusRender);
-  // torus.rotation.x += 0.01;
-  // torus.rotation.y += 0.01;
+  torus.rotation.x += 0.005;
+  torus.rotation.y += 0.005;
   renderer.render(scene, camera);
 }
 
@@ -147,36 +163,39 @@ document.getElementById("torus").addEventListener("click", () => {
   torusRender();
 });
 
+document.getElementById("chipsa").addEventListener("click", () => {
+  for (; scene.children.length > 2; ) {
+    scene.children.pop();
+  }
+  const mtlLoader = new MTLLoader();
+  mtlLoader.load("/model.mtl", (mtl) => {
+    mtl.preload();
+    for (const material of Object.values(mtl.materials)) {
+      material.side = THREE.DoubleSide;
+    }
+    objectLoader.setMaterials(mtl);
+    objectLoader.load("/model.obj", function (object) {
+      object.scale.set(0.2, 0.2, 0.2);
+      object.rotateY(-0.7);
+      scene.add(object);
+    });
+  });
+});
+
 // Ползунок интенсивности
 document.getElementById("intensity").addEventListener("input", () => {
+  light.position.set(0, 0, 50);
   let newIntensity = document.getElementById("intensity").value;
   light.intensity = newIntensity;
 });
 
 // Ползунок цвета
 document.getElementById("color").addEventListener("input", () => {
+  light.position.set(0, 0, 50);
   let hsl = document.getElementById("color").value;
   let newColor = new THREE.Color(`hsl(${hsl}, 100%, 50%)`);
   light.color = newColor;
 });
-
-gloader.load(
-  // resource URL
-  "/chips.glb",
-  // called when the resource is loaded
-  function (gltf) {
-    gltf.scene.scale.set(0.05, 0.05, 0.05);
-    // scene.add(gltf.scene);
-  },
-  // called while loading is progressing
-  function (xhr) {
-    console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
-  },
-  // called when loading has errors
-  function (error) {
-    console.log("An error happened");
-  }
-);
 
 let mouseDown = false;
 canvas.onmousedown = () => {
